@@ -1,133 +1,186 @@
-# 🏠 Real Estate Price Prediction
+# 🏡 Real Estate Price Prediction using Machine Learning (Deployed on AWS EC2)
 
-This project demonstrates the step-by-step process of building a **Real Estate Price Prediction** website. It combines data science, machine learning, and web development concepts to create a fully functional application for predicting property prices based on user inputs. The project is designed to enhance understanding of data science workflows and web technologies. 🚀
-
----
-
-## 📌 Project Overview
-
-The project is divided into three main components:
-
-1. **Model Building** 🧠:  
-   - Build a predictive model using **Linear Regression** from the **Bangalore Home Prices dataset** obtained from [Kaggle](https://www.kaggle.com/).  
-   - Key concepts covered include:
-     - Data loading and cleaning 🧹
-     - Outlier detection and removal 🚫
-     - Feature engineering 🔧
-     - Dimensionality reduction 📉
-     - Model evaluation using **k-fold cross-validation** ✅
-     - Hyperparameter tuning using **GridSearchCV** 🎛️
-
-2. **Backend Development** 🔙:  
-   - Create a **Python Flask** server to handle HTTP requests.  
-   - Serve predictions from the saved machine learning model via an API.  
-
-3. **Frontend Development** 🎨:  
-   - Build a user-friendly website using **HTML**, **CSS**, and **JavaScript**.  
-   - Enable users to input details like area (in square feet), number of bedrooms, etc., and retrieve the predicted property price.
+This repository contains a **Machine Learning model** that predicts real estate prices based on various property features such as location, size, and amenities. The project includes **data preprocessing, feature engineering, model training, and evaluation** to ensure an accurate and reliable price prediction model. It is also **deployed on an AWS EC2 Ubuntu instance**, accessible via public DNS.
 
 ---
 
-## 💻 Technologies and Tools Used
-
-1. **Python** 🐍: Programming language for model development and server-side programming.  
-2. **Numpy** and **Pandas**: For data manipulation and cleaning.  
-3. **Matplotlib** 📊: For data visualization.  
-4. **Scikit-learn (Sklearn)**: For machine learning and building predictive models.  
-5. **Jupyter Notebook** 📓: For exploratory data analysis and model development.  
-6. **Visual Studio Code (VS Code)** and **PyCharm**: Integrated Development Environments (IDEs).  
-7. **Flask** 🌐: A lightweight web framework for backend development.  
-8. **HTML**, **CSS**, and **JavaScript**: For creating the website's frontend.
-
----
-
-## 🔄 Project Workflow
-
-### 1. **Data Science Pipeline** 📈:
-   - Load the dataset from Kaggle.
-   - Perform exploratory data analysis (EDA) to understand the dataset.
-   - Clean the data by handling missing values, removing outliers, and normalizing features.
-   - Engineer features to improve model accuracy.
-   - Split the data into training and testing datasets.
-   - Use **Linear Regression** as the primary model.
-   - Optimize the model using cross-validation and hyperparameter tuning.
-
-### 2. **Backend Development** 🛠️:
-   - Save the trained model to a file using **joblib** or **pickle**.  
-   - Develop a Flask server that:
-     - Loads the saved model.
-     - Exposes an API endpoint to accept inputs and return predictions.
-
-### 3. **Frontend Development** 🌟:
-   - Build a clean and responsive website.
-   - Use JavaScript to call the Flask API and dynamically display the predicted price.
+## 📌 Table of Contents
+- [Introduction](#introduction)
+- [Project Workflow](#project-workflow)
+- [Dataset](#dataset)
+- [Technologies Used](#technologies-used)
+- [Model Training](#model-training)
+- [Results](#results)
+- [How to Run the Project](#how-to-run-the-project)
+- [EC2 Deployment Guide](#ec2-deployment-guide)
+- [Directory Structure](#directory-structure)
+- [Future Enhancements](#future-enhancements)
+- [Contributors](#contributors)
 
 ---
 
-## 📋 Installation and Setup
+## 🔍 Introduction
 
-### Prerequisites
-- Python 3.x installed on your system. 🖥️  
-- Basic understanding of machine learning and web development.
+Predicting property prices is essential for real estate buyers, sellers, and investors. This project aims to:
 
-### Steps to Run the Project Locally
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/VedantPancholi/Real-Estate-Price-Prediction.git
-   cd Real-Estate-Price-Prediction
-   ```
+- Analyze key factors influencing property prices.
+- Build a robust ML model to predict real estate prices.
+- Provide valuable insights into real estate trends.
 
-2. Install the required Python packages:  
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Train the model:  
-   - Open the `RealEstatePricePrediction.ipynb` notebook.  
-   - Execute the cells to preprocess data, train the model, and save it.
-
-4. Start the Flask server:  
-   ```bash
-   python app.py
-   ```
-
-5. Open the website:  
-   - Navigate to `http://localhost:5000` in your web browser. 🌐  
-   - Enter the property details and view the predicted price. 💰
+The model is trained using **machine learning techniques**, with an emphasis on **data cleaning, feature selection, and hyperparameter tuning**.
 
 ---
 
+## 🛠 Project Workflow
 
-## 📂 Folder Structure
+1. **Data Collection** - Collect real estate data containing various property attributes.
+2. **Data Preprocessing** - Handle missing values, encode categorical features, and scale numerical data.
+3. **Feature Engineering** - Select the most relevant features for the model.
+4. **Model Selection & Training** - Compare different ML models (Linear Regression, Decision Trees, XGBoost, etc.).
+5. **Hyperparameter Tuning** - Optimize the model for better performance.
+6. **Evaluation & Predictions** - Assess model accuracy using performance metrics.
+7. **Deployment** - Deploy the model using Flask API on AWS EC2.
 
-```
-Real-Estate-Price-Prediction/
-│
-├── data/                 # Dataset and related files
-├── templates/            # HTML templates for the website
-├── static/               # CSS and JavaScript files
-├── app.py                # Flask server code
-├── model/                # Trained model file
-├── RealEstatePricePrediction.ipynb  # Jupyter Notebook for model building
-└── README.md             # Project documentation
+---
+
+## 📊 Dataset
+
+- **Features Included:**
+  - `Location`, `Size`, `Bedrooms`, `Bathrooms`, `Age`, `Amenities`, `Price`
+- **Preprocessing:**
+  - Handle missing values
+  - Encode categorical variables
+  - Scale features using MinMaxScaler/StandardScaler
+
+---
+
+## 💻 Technologies Used
+
+- **Languages:** Python 🐍
+- **Libraries:** `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `xgboost`
+- **API Framework:** Flask
+- **Deployment:** AWS EC2, Ubuntu, Nginx, Gunicorn, Putty, WinSCP
+
+---
+
+## 🏗️ Model Training
+
+The following models were tested:
+
+1. **Linear Regression**
+2. **Decision Tree Regressor**
+3. **Random Forest Regressor**
+4. **XGBoost Regressor** (Final Model)
+
+- **Best Model Selection Criteria:**
+  - Higher **R² score** (explains variance in data)
+  - Lower **RMSE** (Root Mean Squared Error)
+  - Robustness against overfitting
+
+- **Final Model Used:** **XGBoost Regressor**
+- **Hyperparameter Tuning Method:** Grid Search / Random Search
+
+---
+
+## 📊 Results
+
+- **Training Accuracy:** XX%
+- **Test Accuracy:** XX%
+- **Key Insights:**
+  - Location and Size had the highest feature importance.
+  - Model generalized well on unseen data.
+
+---
+
+## 🚀 How to Run the Project
+
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/Mansi111000/Real_Estate_Price_Prediction_ML.git
+cd Real_Estate_Price_Prediction_ML
 ```
 
+### Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Run the Model
+```bash
+python train_model.py
+```
+
+### Step 4: Make Predictions
+```bash
+python predict.py --input sample_data.csv
+```
+
 ---
 
-## 👨‍💻 Contributors
+## ☁️ EC2 Deployment Guide
 
-- **Vedant Pancholi**  
-- [GitHub Repository](https://github.com/VedantPancholi/Real-Estate-Price-Prediction)
+- Launch EC2 Ubuntu instance
+- Allow inbound rules: **SSH, HTTP, HTTPS**
+- Generate `.pem` key → convert to `.ppk` using **PuTTYgen**
+- SSH into instance via Git Bash:
+```bash
+ssh -i <path-to-pem> ubuntu@<public-dns>
+```
+
+### WinSCP Setup:
+- Host: Public DNS of EC2
+- Username: `ubuntu`
+- Auth: Add `.ppk` in Advanced > SSH > Authentication
+
+### Web Server Setup:
+- Install NGINX & Python3 venv
+- Navigate to `/var/www/html` or redefine root in `bhp.conf`
+- Activate your virtual environment:
+```bash
+cd BHP/server
+source venv/bin/activate
+python3 server.py
+```
+
+### Access the Server:
+- Copy EC2 **Public DNS** in browser after server runs
+- You’ll see your deployed app live on the internet ✅
 
 ---
 
-## 🚀 Future Enhancements
+## 👤 Directory Structure
 
-1. Integrate additional machine learning algorithms for better accuracy.  
-2. Include advanced frontend frameworks like React or Angular for a modern UI.  
-3. Deploy the application on cloud platforms like AWS or Heroku for wider accessibility. ☁️  
-4. Expand the dataset to include other cities and additional features.
+```bash
+Real_Estate_Price_Prediction_ML/
+├── data/
+├── notebooks/
+├── models/
+├── scripts/
+│   ├── preprocess.py
+│   ├── train_model.py
+│   ├── predict.py
+├── app/
+├── config.yaml
+├── README.md
+```
 
 ---
 
-Feel free to explore, experiment, and enhance the project! ✨😊
+## 🔮 Future Enhancements
+
+- Improve Feature Engineering
+- Try Deep Learning models (ANNs)
+- Integrate Real-Time APIs
+- Deploy with Docker & CI/CD pipelines
+
+---
+
+## 👥 Contributors
+
+- **Mansi111000** - [GitHub Profile](https://github.com/Mansi111000)
+- **VedantPancholi** - [GitHub Profile](https://github.com/VedantPancholi)
+
+> ⭐ Feel free to fork, star, and contribute!
+
+
+
