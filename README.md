@@ -84,8 +84,6 @@ The following models were tested:
 
 ## 📊 Results
 
-- **Training Accuracy:** XX%
-- **Test Accuracy:** XX%
 - **Key Insights:**
   - Location and Size had the highest feature importance.
   - Model generalized well on unseen data.
